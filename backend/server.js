@@ -7,10 +7,11 @@ app.use(cors());
 app.use(express.json());
 
 const client = new cassandra.Client({
-    contactPoints: ["127.0.0.1"],
+    contactPoints: ["localhost"], // o la IP de WSL
     localDataCenter: "datacenter1",
     keyspace: "tienda"
 });
+
 
 app.get("/productos", async (req, res) => {
     const result = await client.execute("SELECT * FROM productos");
